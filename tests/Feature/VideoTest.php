@@ -18,7 +18,7 @@ class VideoTest extends TestCase
         //FASE 2 -> Execució -> Executa el codi a provar
 
         //Laravel HTTP TESTS ->
-        $response = $this->get('/');
+        $response = $this->get('/videos/1');
 
         $response->assertStatus(200);
     }
