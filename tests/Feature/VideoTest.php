@@ -13,6 +13,11 @@ class VideoTest extends TestCase
      */
     public function users_can_view_videos()
     {
+        //FASE 1 -> Preparació -> Prepare
+
+        //FASE 2 -> Execució -> Executa el codi a provar
+
+        //Laravel HTTP TESTS ->
         $response = $this->get('/');
 
         $response->assertStatus(200);
