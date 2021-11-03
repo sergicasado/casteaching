@@ -28,10 +28,13 @@ class VideoTest extends TestCase
         ]);
 
         //FASE 2 -> Execució -> Executa el codi a provar
-
         //Laravel HTTP TESTS ->
         $response = $this->get('/videos/1' . $video->id);
 
+        //FASE 3 -> Assertions -> comprovacions
         $response->assertStatus(200);
+        $response->assertSee('Ubuntu 101');
+        $response->assertSee('Here description');
+        $response->assertSee('December 13');
     }
 }
