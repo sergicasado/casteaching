@@ -29,7 +29,7 @@ class VideoTest extends TestCase
 
         //FASE 2 -> Execució -> Executa el codi a provar
         //Laravel HTTP TESTS ->
-        $response = $this->get('/videos/1' . $video->id);
+        $response = $this->get('/videos/1' . $video->id); // SLUGS -> SEO -> TODO
 
         //FASE 3 -> Assertions -> comprovacions
         $response->assertStatus(200);
