@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/videos/1', function () {
-    return view('welcome');
+//    return 'Ubuntu 101 | Here description | December 13';
+    return view('videos.show'); // CRUD -> RETRIEVE -> nomes un video
 });
 
