@@ -28,6 +28,7 @@ class VideoTest extends TestCase
                 'series_id' => 1
         ]);
 
+
         //FASE 2 -> Execució -> Executa el codi a provar
         //Laravel HTTP TESTS ->
 //        dd('/videos/1' . $video->id);
