@@ -19,6 +19,10 @@ Route::get('/', function () {
 
 Route::get('/videos/1', function () {
 //    return 'Ubuntu 101 | Here description | December 13';
-    return view('videos.show'); // CRUD -> RETRIEVE -> nomes un video
+    return view('videos.show',[
+        'title' => 'Ubuntu 101',
+        'description' => 'Here description',
+        'published_at' => 'December 13'
+    ]); // CRUD -> RETRIEVE -> nomes un video
 });
 

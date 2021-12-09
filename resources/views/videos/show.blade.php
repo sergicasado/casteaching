@@ -1,6 +1,6 @@
-<p>Ubuntu 101</p>
+<p>{{$title}}</p>
 
 <ul>
-    <li>Description: Here description</li>
-    <li>Data: December 13</li>
+    <li>Description: {{$description}}</li>
+    <li>Data: {{$published_at}}</li>
 </ul>
