@@ -2,5 +2,5 @@
 
 <ul>
     <li>Description: {{$video->description}}</li>
-    <li>Data: {{$video->published_at}}</li>
+    <li>Data: {{$video->published_at->format('F d') }}</li>
 </ul>
