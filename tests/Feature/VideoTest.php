@@ -11,7 +11,9 @@ use Tests\TestCase;
 
 class VideoTest extends TestCase
 {
-    use RefreshDatabase;        // ESTAT PRECONEGUT -> ZERO STATE
+    use RefreshDatabase;
+
+    // ESTAT PRECONEGUT -> ZERO STATE
 
     /**
      * @test
@@ -28,6 +30,13 @@ class VideoTest extends TestCase
             'series_id' => 1
         ]);
 
+
+
+
+        //FASE 2 -> Execució -> Executa el codi a provar
+        //Laravel HTTP TESTS ->
+        //  dd('/videos/' . $video->id);
+
         $response = $this->get('/videos/' . $video->id); // SLUGS -> SEO -> TODO
 
         $response->assertStatus(200);
@@ -36,12 +45,4 @@ class VideoTest extends TestCase
         $response->assertSee('December 13');
     }
 
-    /**
-     * @test
-     */
-    public function users_cannot_view_not_existing_videos()
-    {
-        $response = $this->get('/videos/999');
-        $response->assertStatus(404);
-    }
 }
