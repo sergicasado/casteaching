@@ -37,3 +37,7 @@ Route::get('/videos/{id}', [ VideosController::class,'show']);
 //    ]); // CRUD -> RETRIEVE -> nomes un video
 //});
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
