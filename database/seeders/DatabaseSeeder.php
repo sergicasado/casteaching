@@ -21,17 +21,6 @@ class DatabaseSeeder extends Seeder
 
         create_default_videos();
 
-        User::create([
-            'name' => 'Sergi Casado',
-            'email' => 'sergicasado1@iesebre.com',
-            'password' => Hash::make(config('casteaching.default_user.password'))
-        ]);
-
-        User::create([
-            'name' => 'Sergi Tur',
-            'email' => 'sergiturbadenas@gmail.com',
-            'password' => Hash::make(config('casteaching.default_user.password'))
-        ]);
 
         Video::create([
             'title' => 'Ubuntu 101',
