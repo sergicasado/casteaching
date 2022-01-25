@@ -33,8 +33,23 @@ class HelpersTest extends TestCase
         $this->assertEquals(config('casteaching.default_user.email'), $user->email);
         $this->assertEquals(config('casteaching.default_user.name'), $user->name);
 
-        $this->assertTrue(Hash::check('plain-text', $user->password));
+        $this->assertTrue(Hash::check(config('casteaching.default_user.password'), $user->password));
 
 
     }
+
+    /**
+     * @test
+     */
+    public function create_default_videos(){
+
+        create_default_videos();
+
+        $this->assertDatabaseCount('videos',1);
+
+    }
+
+
+
+
 }
