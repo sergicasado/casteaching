@@ -1,8 +1,7 @@
 <x-casteaching-layout>
-    <div class="flex flex-col">
+    <div class="flex flex-col h-screen scape-x-4 space-y-4 lg:space-x-4 lg:space-y-4">
         <iframe
-            class="sm:px-3"
-            width="560"
+            class="md:p-3 lg:p-5 xl:px-10 xl:py-5 2xl:px-20 2xl:py-10 h-4/5"
             height="315"
             src="https://www.youtube.com/embed/btGr3mPK1dU"
             title="YouTube video player" frameborder="0"
