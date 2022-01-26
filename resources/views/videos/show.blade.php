@@ -9,7 +9,7 @@
             allowfullscreen>
         </iframe>
 
-        <div class="inline-block max-w-6xl bg-white rounded-lg shadow-lg px-4 py-4 md:px-6 xl:px-15 xl:py-5 2xl:px-20 2xl:py-10 m-4 border-t border-blue-800">
+        <div class="inline-block max-w-7xl w-full bg-white rounded-lg shadow-lg px-4 py-4 md:px-6 xl:px-15 xl:py-5 2xl:px-20 2xl:py-10 m-4 border-t-2 border-indigo-500 rounded-t-none">
             <h2 class="text-gray-900 uppercase font-bold text-2xl tracking-tight border-b border-gray-300">
                 {{$video->title}}
             </h2>
