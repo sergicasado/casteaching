@@ -1,8 +1,7 @@
 <x-casteaching-layout>
-    <div class="flex flex-col space-x-4 space-y-4 lg:space-x-6 lg:space-y-4 xl:space-x-15 xl:space-y-5
-2xl:space-x-20 2xl:space-y-10 items-center">
+    <div class="flex flex-col items-center">
         <iframe
-            class="md:p-3 lg:p-5 xl:px-10 xl:py-5 2xl:px-20 2xl:py-10 h-4/5 w-full"
+            class="md:p-3 lg:p-5 xl:px-10 xl:py-5 2xl:px-20 2xl:py-10 h-4/5 w-full md:px-6 xl:px-15 xl:py-5 2xl:px-20 2xl:py-10"
             style="height: 75vh;"
             src="https://www.youtube.com/embed/btGr3mPK1dU"
             title="YouTube video player" frameborder="0"
@@ -10,14 +9,14 @@
             allowfullscreen>
         </iframe>
 
-        <div class="border-2 p-3 bg-white pr-5">
-            <h2 class="text-gray-900 uppercase font-bold text-2xl tracking-tight">
+        <div class="inline-block max-w-6xl bg-white rounded-lg shadow-lg px-4 py-4 md:px-6 xl:px-15 xl:py-5 2xl:px-20 2xl:py-10 m-4 border-t border-blue-800">
+            <h2 class="text-gray-900 uppercase font-bold text-2xl tracking-tight border-b border-gray-300">
                 {{$video->title}}
             </h2>
 
         </div>
 
-        <div class="prose-sm md:prose lg:prose-xl 2xl:prose-2xl mx-auto">
+        <div class="prose-sm md:prose lg:prose-xl 2xl:prose-2xl mx-auto px-4 py-4 md:px-6 xl:px-15 xl:py-5 2xl:px-20 2xl:py-10">
             {!! Str::markdown($video->description) !!}
         </div>
     </div>
