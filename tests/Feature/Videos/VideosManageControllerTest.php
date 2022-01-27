@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Testing\Fluent\Concerns\Has;
 use Tests\TestCase;
 
 class VideosManageControllerTest extends TestCase
@@ -15,9 +14,9 @@ class VideosManageControllerTest extends TestCase
     use RefreshDatabase;
 
     /** @test **/
-    public function user_with_permissions_can_manage_videos()
+    public function superadmins_can_manage_videos()
     {
-        $this->loginAsVideoManager();
+        $this->loginAsSuperAdmin();
 
         $response = $this->get('/manage/videos');
 
@@ -34,5 +33,10 @@ class VideosManageControllerTest extends TestCase
 
         Auth::login($user);
 
+    }
+
+    private function loginAsSuperAdmin()
+    {
+        Auth::login(create_superadmin_user());
     }
 }
