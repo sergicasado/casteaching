@@ -6,6 +6,7 @@ use App\Models\Video;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 
 if(! function_exists('create_default_user()')){
     function create_default_user()
@@ -18,16 +19,8 @@ if(! function_exists('create_default_user()')){
 
         $user->superadmin = true;
         $user->save();
-        try{
-            Team::create([
-                'name' => $user->name . "'s Team",
-                'user_id' => $user->id,
-                'personal_team' => true
-            ]);
-        } catch (\Exception $exception){
 
-        }
-
+        add_personal_team($user);
 
     }
 }
@@ -46,15 +39,7 @@ if(! function_exists('create_default_user2()')){
         $user2->superadmin = true;
         $user2->save();
 
-        try {
-            Team::create([
-                'name' => $user2->name . "'s Team",
-                'user_id' => $user2->id,
-                'personal_team' => true
-            ]);
-        } catch (\Exception $exception){
-
-        }
+        add_personal_team($user2);
     }
 }
 
@@ -84,6 +69,39 @@ if(! function_exists('create_default_user')){
         ]);
         $user->superadmin=true;
         $user->save();
+        return $user;
+    }
+}
+
+if (! function_exists('create_regular_user')) {
+    function create_regular_user()
+    {
+        $user = User::create([
+            'name' => 'Pepe Pringao',
+            'email' => 'pringao@casteaching.com',
+            'password' => Hash::make('12345678')
+        ]);
+
+        add_personal_team($user);
+
+        return $user;
+    }
+}
+
+if (! function_exists('create_video_manager_user')) {
+    function create_video_manager_user(){
+        $user = User::create([
+            'name' => 'VideosManager',
+            'email' => 'videosmanager@casteaching.com',
+            'password' => Hash::make('12345678')
+        ]);
+
+            Permission::firstOrCreate(['name' => 'videos_manage_index']);
+
+        $user->givePermissionTo('videos_manage_index');
+
+        add_personal_team($user);
+
         return $user;
     }
 }
@@ -118,7 +136,6 @@ if (! function_exists('add_personal_team')) {
                 'personal_team' => true
             ]);
         } catch (\Exception $exception) {
-//            dd($exception->getMessage());
         }
     }
 }
@@ -132,18 +149,15 @@ if(! function_exists('define_gates')){
             }
         });
 
-        Gate::define('videos_manage_index', function (User $user){
-            return false;
-        });
     }
 }
 
-//Gate::define('videos_manage_create', function (User $user){
-//    return false;
-//});
 
-
-
+if(! function_exists('create_permissions')){
+    function create_permissions(){
+    Permission::firstOrCreate(['name' => 'videos_manage_index']);
+    }
+}
 
 
 
