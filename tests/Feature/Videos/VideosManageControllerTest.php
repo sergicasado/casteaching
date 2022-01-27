@@ -21,6 +21,7 @@ class VideosManageControllerTest extends TestCase
         $response = $this->get('/manage/videos');
 
         $response->assertStatus(200);
+        $response->assertViewIs('videos.manage.index');
     }
 
     private function loginAsVideoManager()

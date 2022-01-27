@@ -19,6 +19,10 @@
                     <x-jet-nav-link href="/videos/1">
                         {{ __('Videos 1') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="manage/videos" :active="request()->routeIs('manage.videos')">
+                        {{ __('Manage Videos') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -161,6 +165,10 @@
 
             <x-jet-responsive-nav-link href="/videos/1">
                 {{ __('Videos 1') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="/manage/videos" :active="request()->routeIs('manage.videos')">
+                {{ __('Manage Videos') }}
             </x-jet-responsive-nav-link>
         </div>
 

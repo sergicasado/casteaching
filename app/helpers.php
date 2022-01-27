@@ -16,7 +16,8 @@ if(! function_exists('create_default_user()')){
             'password' => Hash::make(config('casteaching.default_user.password'))
         ]);
 
-
+        $user->superadmin = true;
+        $user->save();
         try{
             Team::create([
                 'name' => $user->name . "'s Team",
@@ -41,6 +42,9 @@ if(! function_exists('create_default_user2()')){
             'email' => config('casteaching.default_user2.email','sergiturbadenas@gmail.com'),
             'password' => Hash::make(config('casteaching.default_user2.password'))
         ]);
+
+        $user2->superadmin = true;
+        $user2->save();
 
         try {
             Team::create([
@@ -119,18 +123,22 @@ if (! function_exists('add_personal_team')) {
     }
 }
 
-if(! function_exists('create_default_user2()')){
+if(! function_exists('define_gates')){
     function define_gates(){
 
-        Gate::define('videos_manage_create', function (User $user){
-            if ($user->isSuperAdmin()) return true;
+        Gate::before(function ($user, $ability) {
+            if ($user->isSuperAdmin()) {
+                return true;
+            }
+        });
+
+        Gate::define('videos_manage_index', function (User $user){
             return false;
         });
     }
 }
 
 //Gate::define('videos_manage_create', function (User $user){
-//    if ($user->isSuperAdmin()) return true;
 //    return false;
 //});
 

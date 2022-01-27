@@ -10,7 +10,7 @@ class VideosManageController extends Controller
      */
     public function index()
     {
-        //
+        return view('videos.manage.index');
     }
 
     /** C -> Create -> Mostrarà a base de dades el nou */

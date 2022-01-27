@@ -26,4 +26,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('manage/videos', [ VideosManageController::class,'index'])->middleware(['can:videos_manage_index']);
+Route::get('manage/videos', [ VideosManageController::class,'index'])->middleware(['can:videos_manage_index'])
+    ->name('manage.videos');
