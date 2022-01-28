@@ -160,5 +160,34 @@ if(! function_exists('create_permissions')){
 }
 
 
+if(! function_exists('create_sample_videos')){
+function create_sample_videos(){
+    $video1 = Video::create([
+        'title' => 'Video 1',
+        'description' => 'Descripcio video 1',
+        'url' => 'https://youtu.be/syqUFgWSKcA'
+
+    ]);
+
+    $video2 = Video::create([
+        'title' => 'Video 2',
+        'description' => 'Descripcio video 2',
+        'url' => 'https://youtu.be/2QIV9vtqPx0'
+
+    ]);
+
+    $video3 = Video::create([
+        'title' => 'Video 3',
+        'description' => 'Descripcio video 3',
+        'url' => 'https://youtu.be/jyu49Y6aswc'
+
+    ]);
+
+        return collect([$video1,$video2,$video3]);
+    }
+}
+
+
+
 
 

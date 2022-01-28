@@ -2,9 +2,14 @@
 
 namespace Tests\Feature\Videos;
 
+use App\Models\Video;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
+
+/**
+ * @covers \App\Http\Controllers\VideosManageController
+ */
 
 class VideosManageControllerTest extends TestCase
 {
@@ -16,8 +21,16 @@ class VideosManageControllerTest extends TestCase
     {
         $this->loginAsVideoManager();
 
+        $videos = create_sample_videos();
         $response = $this->get('/manage/videos');
+
         $response->assertStatus(200);
+        $response->assertViewIs('videos.manage.index');
+        $response->assertViewHas('videos', function ($v) use ($videos){
+            return $videos->count() === $videos->count() && get_class($videos) === Collection::class &&
+                get_class($videos[0]) === Video::class;
+        });
+
     }
 
 
