@@ -18,12 +18,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         create_default_user();
+
         create_default_videos();
+
         create_default_user2();
+
         create_superadmin_user();
+
         create_regular_user();
+
         create_permissions();
+
         create_video_manager_user();
+
+        create_sample_videos();
     }
 
 

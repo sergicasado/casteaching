@@ -183,7 +183,7 @@ function create_sample_videos(){
 
     ]);
 
-        return collect([$video1,$video2,$video3]);
+        return [$video1,$video2,$video3];
     }
 }
 
