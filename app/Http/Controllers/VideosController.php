@@ -8,7 +8,7 @@ use Tests\Feature\VideoTest;
 
 class VideosController extends Controller
 {
-    public static function  testedBy()
+    public static function testedBy()
     {
         return VideoTest::class;
     }
