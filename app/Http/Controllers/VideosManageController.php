@@ -29,10 +29,10 @@ class VideosManageController extends Controller
     }
 
     /** C -> Create -> Guardarà a base de dades el nou Video */
-    public function store(Request $request)
-    {
-        //
-    }
+//    public function store(Request $request)
+//    {
+//        //
+//    }
 
     /** R -> NO LLISTA -> Individual  */
     public function show($id)
