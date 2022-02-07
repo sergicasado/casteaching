@@ -96,9 +96,9 @@ if (! function_exists('create_video_manager_user')) {
             'password' => Hash::make('12345678')
         ]);
 
-          Permission::create(['name' => 'videos_manage_index']);
-          Permission::create(['name' => 'videos_manage_create']);
-          Permission::create(['name' => 'videos_manage_destroy']);
+          Permission::firstOrcreate(['name' => 'videos_manage_index']);
+          Permission::firstOrcreate(['name' => 'videos_manage_create']);
+          Permission::firstOrcreate(['name' => 'videos_manage_destroy']);
           $user->givePermissionTo('videos_manage_index');
           $user->givePermissionTo('videos_manage_create');
           $user->givePermissionTo('videos_manage_destroy');
