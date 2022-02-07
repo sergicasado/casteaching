@@ -63,6 +63,8 @@ class VideosManageController extends Controller
     /** D -> Delete */
     public function destroy($id)
     {
-        //
+        Video::find($id)->delete();
+        session()->flash('status', 'Successfully removed');
+        return redirect()->route('manage.videos');
     }
 }
