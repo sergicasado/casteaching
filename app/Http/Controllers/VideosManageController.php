@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Tests\Feature\Videos\VideosManageControllerTest;
 
 class VideosManageController extends Controller
 {
@@ -30,7 +31,15 @@ class VideosManageController extends Controller
     /** C -> Create -> Guardarà a base de dades el nou Video */
     public function store(Request $request)
     {
-        //
+        Video::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'url' => $request->url,
+        ]);
+
+        session()->flash('status', 'Successfully created');
+
+        return redirect()->route('manage.videos');
     }
 
     /** R -> NO LLISTA -> Individual  */
@@ -54,6 +63,8 @@ class VideosManageController extends Controller
     /** D -> Delete */
     public function destroy($id)
     {
-        //
+        Video::find($id)->delete();
+        session()->flash('status', 'Successfully removed');
+        return redirect()->route('manage.videos');
     }
 }
