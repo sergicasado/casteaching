@@ -60,7 +60,7 @@
                         <tbody>
                         <!-- Odd row -->
                         @foreach($videos as $video)
-                            @if($lop->odd)
+                            @if($loop->odd)
                                 <tr class="bg-white">
                             @else
                                 <tr class="bg-gray-50">

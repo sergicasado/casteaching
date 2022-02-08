@@ -40,7 +40,6 @@ class VideoTest extends TestCase
         //  dd('/videos/' . $video->id);
 
         $response = $this->get('/videos/' . $video->id); // SLUGS -> SEO -> TODO
-
         $response->assertStatus(200);
         $response->assertSee('Ubuntu 101');
         $response->assertSee('Here description');
