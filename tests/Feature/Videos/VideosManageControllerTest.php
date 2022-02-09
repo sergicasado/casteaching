@@ -27,7 +27,7 @@ class VideosManageControllerTest extends TestCase
         $video = Video::create([
             'title' => 'HTTP for noobs',
             'description' => 'Te ensenyo tot el que se sobre HTTP',
-            'url' => 'https://tubeme.acacha.org/http', 
+            'url' => 'https://tubeme.acacha.org/http',  
         ]);
 
         // URI ENDPOINT -> API -> FUNCTION
