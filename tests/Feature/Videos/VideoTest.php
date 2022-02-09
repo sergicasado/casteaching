@@ -17,7 +17,6 @@ class VideoTest extends TestCase
 {
     use RefreshDatabase;
 
-    // ESTAT PRECONEGUT -> ZERO STATE
 
     /**
      * @test
@@ -35,9 +34,6 @@ class VideoTest extends TestCase
         ]);
 
 
-        //FASE 2 -> Execució -> Executa el codi a provar
-        //Laravel HTTP TESTS ->
-        //  dd('/videos/' . $video->id);
 
         $response = $this->get('/videos/' . $video->id); // SLUGS -> SEO -> TODO
         $response->assertStatus(200);

@@ -23,7 +23,7 @@ class UsersManageController extends Controller
 
     public function create()
     {
-        //
+
     }
 
     public function store(Request $request)
@@ -44,17 +44,17 @@ class UsersManageController extends Controller
 
     public function show($id)
     {
-        //
+
     }
 
     public function edit($id)
     {
-        //
+
     }
 
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     public function destroy($id)

@@ -138,10 +138,10 @@ class VideosManageControllerTest extends TestCase
         $response->assertRedirect(route('manage.videos'));
         $response->assertSessionHas('status', 'Successfully created');
 
-        // 3 Asserting
+
         $videoDB = Video::first();
 
-//        $this->assertNotEquals(null, $video);
+
         $this->assertNotNull($videoDB);
         $this->assertEquals($videoDB->title,$video->title);
         $this->assertEquals($videoDB->description,$video->description);
