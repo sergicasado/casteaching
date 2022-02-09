@@ -1,5 +1,5 @@
 **TITLE**
-test1234
+
 - Background color -> Evitar blanc
 - Plugin de Tailwind instal·lat a PHPStorm
 - space-y 6 per evitar tants paddings
