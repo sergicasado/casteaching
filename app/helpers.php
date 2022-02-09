@@ -8,43 +8,23 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 
-if(! function_exists('create_default_user()')){
+if (! function_exists('create_default_user')) {
     function create_default_user()
     {
         $user = User::create([
-            'name' => config('casteaching.default_user.name','Sergi Casado'),
-            'email' => config('casteaching.default_user.email','sergicasado1@iesebre.com'),
-            'password' => Hash::make(config('casteaching.default_user.password'))
+            'name' => config('casteaching.default_user.name', 'Sergi Tur Badenas'),
+            'email' => config('casteaching.default_user.email','sergiturbadenas@gmail.com'),
+            'password' => Hash::make(config('casteaching.default_user.password','12345678'))
         ]);
 
         $user->superadmin = true;
         $user->save();
 
         add_personal_team($user);
-
     }
 }
 
-
-
-if(! function_exists('create_default_user2()')){
-    function create_default_user2()
-    {
-        $user2 = User::create([
-            'name' => config('casteaching.default_user2.name','Sergi Tur Badenas'),
-            'email' => config('casteaching.default_user2.email','sergiturbadenas@gmail.com'),
-            'password' => Hash::make(config('casteaching.default_user2.password'))
-        ]);
-
-        $user2->superadmin = true;
-        $user2->save();
-
-        add_personal_team($user2);
-    }
-}
-
-
-if(! function_exists('create_default_videos()')) {
+if (! function_exists('create_default_videos')) {
     function create_default_videos()
     {
         Video::create([
@@ -56,20 +36,6 @@ if(! function_exists('create_default_videos()')) {
             'next' => null,
             'series_id' => 1
         ]);
-    }
-}
-
-if(! function_exists('create_default_user')){
-    function create_superadmin_user(){
-        $user = User::create([
-            'name' => 'SuperAdmin',
-            'email' => 'superadmin@casteaching.com',
-            'password' => Hash::make('12345678'),
-            'superadmin' => true
-        ]);
-        $user->superadmin=true;
-        $user->save();
-        return $user;
     }
 }
 
@@ -89,24 +55,27 @@ if (! function_exists('create_regular_user')) {
 }
 
 if (! function_exists('create_video_manager_user')) {
-    function create_video_manager_user(){
+    function create_video_manager_user() {
         $user = User::create([
             'name' => 'VideosManager',
             'email' => 'videosmanager@casteaching.com',
             'password' => Hash::make('12345678')
         ]);
 
-          Permission::firstOrcreate(['name' => 'videos_manage_index']);
-          Permission::firstOrcreate(['name' => 'videos_manage_create']);
-          Permission::firstOrcreate(['name' => 'videos_manage_store']);
-          Permission::firstOrcreate(['name' => 'videos_manage_destroy']);
-          $user->givePermissionTo('videos_manage_index');
-          $user->givePermissionTo('videos_manage_create');
-          $user->givePermissionTo('videos_manage_store');
-          $user->givePermissionTo('videos_manage_destroy');
+        Permission::create(['name' => 'videos_manage_index']);
+        Permission::create(['name' => 'videos_manage_create']);
+        Permission::create(['name' => 'videos_manage_store']);
+        Permission::create(['name' => 'videos_manage_edit']);
+        Permission::create(['name' => 'videos_manage_update']);
+        Permission::create(['name' => 'videos_manage_destroy']);
+        $user->givePermissionTo('videos_manage_index');
+        $user->givePermissionTo('videos_manage_create');
+        $user->givePermissionTo('videos_manage_store');
+        $user->givePermissionTo('videos_manage_destroy');
+        $user->givePermissionTo('videos_manage_edit');
+        $user->givePermissionTo('videos_manage_update');
 
         add_personal_team($user);
-
         return $user;
     }
 }
@@ -134,8 +103,6 @@ if (! function_exists('create_user_manager_user')) {
 }
 
 
-
-
 if (! function_exists('create_superadmin_user')) {
     function create_superadmin_user() {
         $user = User::create([
@@ -149,6 +116,71 @@ if (! function_exists('create_superadmin_user')) {
         add_personal_team($user);
 
         return $user;
+    }
+}
+
+if (! function_exists('add_personal_team')) {
+    /**
+     * @param $user
+     */
+    function add_personal_team($user): void
+    {
+        try {
+            Team::forceCreate([
+                'name' => $user->name . "'s Team",
+                'user_id' => $user->id,
+                'personal_team' => true
+            ]);
+        } catch (\Exception $exception) {
+//            dd($exception->getMessage());
+        }
+    }
+}
+
+
+if (! function_exists('define_gates')) {
+    function define_gates() {
+
+        Gate::before(function ($user, $ability) {
+            if ($user->isSuperAdmin()) {
+                return true;
+            }
+        });
+
+
+    }
+}
+
+if (! function_exists('create_permissions')) {
+    function create_permissions() {
+        Permission::firstOrCreate(['name' => 'videos_manage_index']);
+        Permission::firstOrCreate(['name' => 'videos_manage_create']);
+        Permission::firstOrCreate(['name' => 'videos_manage_store']);
+        Permission::firstOrCreate(['name' => 'videos_manage_destroy']);
+        Permission::firstOrCreate(['name' => 'videos_manage_edit']);
+        Permission::firstOrCreate(['name' => 'videos_manage_update']);
+    }
+}
+
+if (! function_exists('create_sample_videos')) {
+    function create_sample_videos() {
+        $video1 = Video::create([
+            'title' => 'Vídeo 1',
+            'description' => 'Bla bla bla',
+            'url' => 'https://youtu.be/a-3kfT9hZk4'
+        ]);
+        $video2 = Video::create([
+            'title' => 'Vídeo 2',
+            'description' => 'Bla bla bla',
+            'url' => 'https://youtu.be/a7GV5aReVDQ'
+        ]);
+        $video3 = Video::create([
+            'title' => 'Vídeo 3',
+            'description' => 'Bla bla bla',
+            'url' => 'https://youtu.be/--ZfoRC2JBw'
+        ]);
+
+        return [$video1, $video2, $video3];
     }
 }
 
@@ -244,76 +276,3 @@ if (! function_exists('objectify')) {
         return new DomainObject($array);
     }
 }
-
-
-if (! function_exists('add_personal_team')) {
-    /**
-     * @param $user
-     */
-    function add_personal_team($user): void
-    {
-        try {
-            Team::forceCreate([
-                'name' => $user->name . "'s Team",
-                'user_id' => $user->id,
-                'personal_team' => true
-            ]);
-        } catch (\Exception $exception) {
-        }
-    }
-}
-
-if(! function_exists('define_gates')){
-    function define_gates(){
-
-        Gate::before(function ($user, $ability) {
-            if ($user->isSuperAdmin()) {
-                return true;
-            }
-        });
-
-    }
-}
-
-
-if(! function_exists('create_permissions')){
-    function create_permissions(){
-    Permission::firstOrCreate(['name' => 'videos_manage_index']);
-    Permission::firstOrCreate(['name' => 'videos_manage_create']);
-    Permission::firstOrCreate(['name' => 'videos_manage_destroy']);
-    Permission::firstOrCreate(['name' => 'videos_manage_store']);
-    }
-}
-
-
-if(! function_exists('create_sample_videos')){
-function create_sample_videos(){
-    $video1 = Video::create([
-        'title' => 'Video 1',
-        'description' => 'Descripcio video 1',
-        'url' => 'https://youtu.be/syqUFgWSKcA'
-
-    ]);
-
-    $video2 = Video::create([
-        'title' => 'Video 2',
-        'description' => 'Descripcio video 2',
-        'url' => 'https://youtu.be/2QIV9vtqPx0'
-
-    ]);
-
-    $video3 = Video::create([
-        'title' => 'Video 3',
-        'description' => 'Descripcio video 3',
-        'url' => 'https://youtu.be/jyu49Y6aswc'
-
-    ]);
-
-        return [$video1,$video2,$video3];
-    }
-}
-
-
-
-
-

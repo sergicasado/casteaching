@@ -3,6 +3,7 @@
 namespace Tests\Feature\Users;
 
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,10 @@ use Spatie\Permission\Models\Permission;
 class UsersManageControllerTest extends TestCase
 {
     use RefreshDatabase;
+
+    /** @test  */
+
+
 
     /** @test  */
     public function user_with_permissions_can_destroy_users() {
