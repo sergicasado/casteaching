@@ -18,7 +18,7 @@ use Tests\TestCase;
 class VideosManageControllerTest extends TestCase
 {
     use RefreshDatabase;
-    
+
 
     /** @test  */
     public function user_with_permissions_can_update_videos()
@@ -27,7 +27,7 @@ class VideosManageControllerTest extends TestCase
         $video = Video::create([
             'title' => 'HTTP for noobs',
             'description' => 'Te ensenyo tot el que se sobre HTTP',
-            'url' => 'https://tubeme.acacha.org/http',
+            'url' => 'https://tubeme.acacha.org/http', 
         ]);
 
         // URI ENDPOINT -> API -> FUNCTION
