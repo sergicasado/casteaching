@@ -42,12 +42,6 @@ class VideosManageController extends Controller
         return redirect()->route('manage.videos');
     }
 
-    /** R -> NO LLISTA -> Individual  */
-    public function show($id)
-    {
-
-    }
-
     /** U -> Update -> Form  */
     public function edit($id)
     {
