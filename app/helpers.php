@@ -9,18 +9,34 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 
 if (! function_exists('create_default_user')) {
-    function create_superadmin_user() {
+    function create_default_user() {
+
         $user = User::create([
-            'name' => 'Sergi Tur Badenas',
-            'email' => 'sergiturbadenas@gmail.com',
-            'password' => Hash::make('12345678')
+            'name' => config('casteaching.default_user.name', 'Sergi Tur Badenas'),
+            'email' => config('casteaching.default_user.email','sergiturbadenas@gmail.com'),
+            'password' => Hash::make(config('casteaching.default_user.password','12345678'))
         ]);
+
         $user->superadmin = true;
         $user->save();
 
         add_personal_team($user);
+    }
+}
 
-        return $user;
+if (! function_exists('create_default_user2')) {
+    function create_default_user2() {
+
+        $user = User::create([
+            'name' => config('casteaching.default_user2.name', 'Sergi Casado Pellissa'),
+            'email' => config('casteaching.default_user2.email','sergicasado1@iesebre.com'),
+            'password' => Hash::make(config('casteaching.default_user2.password','12345678'))
+        ]);
+
+        $user->superadmin = true;
+        $user->save();
+
+        add_personal_team($user);
     }
 }
 
@@ -64,12 +80,12 @@ if (! function_exists('create_video_manager_user')) {
             'password' => Hash::make('12345678')
         ]);
 
-        Permission::create(['name' => 'videos_manage_index']);
-        Permission::create(['name' => 'videos_manage_create']);
-        Permission::create(['name' => 'videos_manage_store']);
-        Permission::create(['name' => 'videos_manage_edit']);
-        Permission::create(['name' => 'videos_manage_update']);
-        Permission::create(['name' => 'videos_manage_destroy']);
+        Permission::firstOrCreate(['name' => 'videos_manage_index']);
+        Permission::firstOrCreate(['name' => 'videos_manage_create']);
+        Permission::firstOrCreate(['name' => 'videos_manage_store']);
+        Permission::firstOrCreate(['name' => 'videos_manage_edit']);
+        Permission::firstOrCreate(['name' => 'videos_manage_update']);
+        Permission::firstOrCreate(['name' => 'videos_manage_destroy']);
         $user->givePermissionTo('videos_manage_index');
         $user->givePermissionTo('videos_manage_create');
         $user->givePermissionTo('videos_manage_store');
