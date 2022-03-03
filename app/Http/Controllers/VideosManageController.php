@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\VideoCreated;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Tests\Feature\Videos\VideosManageControllerTest;
@@ -31,13 +32,15 @@ class VideosManageController extends Controller
     /** C -> Create -> Guardarà a base de dades el nou Video */
     public function store(Request $request)
     {
-        Video::create([
+        $video = Video::create([
             'title' => $request->title,
             'description' => $request->description,
             'url' => $request->url,
         ]);
 
         session()->flash('status', 'Successfully created');
+
+        VideoCreated::dispatch($video);
 
         return redirect()->route('manage.videos');
     }
