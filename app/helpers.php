@@ -9,20 +9,22 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 
 if (! function_exists('create_default_user')) {
-    function create_default_user()
-    {
+    function create_superadmin_user() {
         $user = User::create([
-            'name' => config('casteaching.default_user.name', 'Sergi Tur Badenas'),
-            'email' => config('casteaching.default_user.email','sergiturbadenas@gmail.com'),
-            'password' => Hash::make(config('casteaching.default_user.password','12345678'))
+            'name' => 'Sergi Tur Badenas',
+            'email' => 'sergiturbadenas@gmail.com',
+            'password' => Hash::make('12345678')
         ]);
-
         $user->superadmin = true;
         $user->save();
 
         add_personal_team($user);
+
+        return $user;
     }
 }
+
+
 
 if (! function_exists('create_default_videos')) {
     function create_default_videos()
