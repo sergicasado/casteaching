@@ -15,6 +15,8 @@ use App\Http\Controllers\VideosApiController;
 |
 */
 
+usleep(2000);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
