@@ -16,7 +16,4 @@ class LandingPageController extends Controller
     {
         return view('welcome');
     }
-
-
-
 }

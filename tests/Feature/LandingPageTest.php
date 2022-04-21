@@ -7,6 +7,7 @@ use Tests\TestCase;
 
 class LandingPageTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * @test
      */

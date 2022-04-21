@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
+use App\Models\Serie;
 
 if (! function_exists('create_default_user')) {
     function create_default_user() {
@@ -308,5 +309,40 @@ if (! function_exists('objectify')) {
     function objectify($array)
     {
         return new DomainObject($array);
+    }
+}
+
+
+if (! function_exists('create_sample_series')) {
+    function create_sample_series()
+    {
+        $serie1 = Serie::create([
+            'title' => 'TDD (Test Driven Development)',
+            'description' => 'Bla bla bla',
+            'image' => 'tdd.png',
+            'teacher_name' => 'Sergi Tur Badenas',
+            'teacher_photo_url' => 'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
+        ]);
+
+        sleep(1);
+        $serie2 = Serie::create([
+            'title' => 'Crud amb Vue i Laravel',
+            'description' => 'Bla bla bla',
+            'image' => 'crud_amb_vue_laravel.png',
+            'teacher_name' => 'Sergi Tur Badenas',
+            'teacher_photo_url' => 'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
+        ]);
+
+        sleep(1);
+
+        $serie3 = Serie::create([
+            'title' => 'ionic Real world',
+            'description' => 'Bla bla bla',
+            'image' => 'ionic_real_world.png',
+            'teacher_name' => 'Sergi Tur Badenas',
+            'teacher_photo_url' => 'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com')
+        ]);
+
+        return [$serie1,$serie2,$serie3];
     }
 }
