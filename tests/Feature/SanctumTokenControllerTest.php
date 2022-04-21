@@ -9,12 +9,12 @@ use Tests\TestCase;
 
 /**
  * @covers \App\Http\Controllers\SanctumTokenController
- */
+**/
 class SanctumTokenControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    /** @test **/
     public function email_is_required_for_issuing_tokens()
     {
         // Execució
@@ -30,7 +30,7 @@ class SanctumTokenControllerTest extends TestCase
 
     }
 
-    /** @test */
+    /** @test **/
     public function email_is_valid_for_issuing_tokens()
     {
         // Execució
@@ -46,7 +46,7 @@ class SanctumTokenControllerTest extends TestCase
         $this->assertEquals("The provided credentials are incorrect.",$jsonResponse->errors->email[0]);
     }
 
-    /** @test */
+    /** @test **/
     public function password_is_required_for_issuing_tokens()
     {
         // Execució
@@ -61,7 +61,7 @@ class SanctumTokenControllerTest extends TestCase
         $this->assertEquals("The password field is required.",$jsonResponse->errors->password[0]);
     }
 
-    /** @test */
+    /** @test **/
     public function device_name_is_required_for_issuing_tokens()
     {
         // Execució
@@ -76,7 +76,7 @@ class SanctumTokenControllerTest extends TestCase
         $this->assertEquals("The device name field is required.",$jsonResponse->errors->device_name[0]);
     }
 
-    /** @test */
+    /** @test **/
     public function invalid_password_gives_incorrect_credentials_error()
     {
         // Preparació
@@ -98,8 +98,7 @@ class SanctumTokenControllerTest extends TestCase
         $this->assertEquals("The given data was invalid.",$jsonResponse->message);
         $this->assertEquals("The provided credentials are incorrect.",$jsonResponse->errors->email[0]);
     }
-
-    /** @test */
+/** @test **/
     public function invalid_email_gives_incorrect_credentials_error()
     {
         // Preparació
@@ -122,7 +121,7 @@ class SanctumTokenControllerTest extends TestCase
         $this->assertEquals("The provided credentials are incorrect.",$jsonResponse->errors->email[0]);
     }
 
-    /** @test */
+    /** @test **/
     public function user_with_valid_credentials_can_issue_a_token()
     {
         // Preparació
